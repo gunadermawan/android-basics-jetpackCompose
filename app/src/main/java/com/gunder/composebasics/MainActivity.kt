@@ -34,14 +34,9 @@ private fun MyApp(
         modifier = modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.background
     ) {
-        Row(modifier = Modifier.padding(24.dp)) {
-            Column(modifier = Modifier.weight(1f)) {
-                for (name in names) {
-                    Greeting(name = name)
-                }
-            }
-            ElevatedButton(onClick = { }) {
-                Text("show more")
+        Column(modifier = Modifier) {
+            for (name in names) {
+                Greeting(name = name)
             }
         }
     }
@@ -53,13 +48,16 @@ fun Greeting(name: String) {
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(24.dp)
-        ) {
-            Text(text = "Hello")
-            Text(text = "$name!")
+        Row(modifier = Modifier.padding(24.dp)) {
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(text = "Hello")
+                Text(text = "$name!")
+            }
+            ElevatedButton(onClick = {}) {
+                Text("Show More")
+            }
         }
     }
 }
