@@ -3,10 +3,8 @@ package com.gunder.composebasics
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -36,9 +34,14 @@ private fun MyApp(
         modifier = modifier.padding(vertical = 4.dp),
         color = MaterialTheme.colorScheme.background
     ) {
-        Column(modifier) {
-            for (name in names) {
-                Greeting(name = name)
+        Row(modifier = Modifier.padding(24.dp)) {
+            Column(modifier = Modifier.weight(1f)) {
+                for (name in names) {
+                    Greeting(name = name)
+                }
+            }
+            ElevatedButton(onClick = { }) {
+                Text("show more")
             }
         }
     }
@@ -50,9 +53,11 @@ fun Greeting(name: String) {
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(24.dp)
+        ) {
             Text(text = "Hello")
             Text(text = "$name!")
         }
