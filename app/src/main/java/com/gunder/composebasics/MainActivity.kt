@@ -24,10 +24,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun OnBoardingScreen(modifier: Modifier = Modifier) {
-    var shouldShowBoarding by remember {
-        mutableStateOf(true)
-    }
+private fun OnBoardingScreen(onContinueClicked: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -35,7 +32,7 @@ private fun OnBoardingScreen(modifier: Modifier = Modifier) {
     ) {
         Text("welcome to jetpack compose!")
         Button(
-            onClick = { shouldShowBoarding = false },
+            onClick = onContinueClicked,
             modifier = Modifier.padding(vertical = 24.dp)
         ) {
             Text("Continue")
@@ -47,23 +44,22 @@ private fun OnBoardingScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun OnBoardingPreview() {
     ComposeBasicsTheme {
-        OnBoardingScreen()
+        OnBoardingScreen(onContinueClicked = {})
     }
 }
 
 @Composable
 private fun MyApp(modifier: Modifier = Modifier) {
-    val shouldShowOnBoarding by remember {
+    var shouldShowOnBoarding by remember {
         mutableStateOf(true)
     }
     Surface(modifier) {
         if (shouldShowOnBoarding) {
-            OnBoardingScreen()
+            OnBoardingScreen(onContinueClicked = { shouldShowOnBoarding = false })
         } else {
             Greetings()
         }
     }
-    Greetings()
 }
 
 @Preview(showBackground = true, widthDp = 320)
