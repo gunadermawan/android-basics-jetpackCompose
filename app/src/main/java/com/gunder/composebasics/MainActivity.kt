@@ -52,19 +52,43 @@ private fun OnBoardingPreview() {
 }
 
 @Composable
-private fun MyApp(
-    modifier: Modifier = Modifier,
-    names: List<String> = listOf("world", "Android")
-) {
-    Surface(
-        modifier = modifier.padding(vertical = 4.dp),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column(modifier = Modifier) {
-            for (name in names) {
-                Greeting(name = name)
-            }
+private fun MyApp(modifier: Modifier = Modifier) {
+    val shouldShowOnBoarding by remember {
+        mutableStateOf(true)
+    }
+    Surface(modifier) {
+        if (shouldShowOnBoarding) {
+            OnBoardingScreen()
+        } else {
+            Greetings()
         }
+    }
+    Greetings()
+}
+
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+private fun MyAppPreview() {
+    MyApp(Modifier.fillMaxSize())
+}
+
+@Composable
+private fun Greetings(
+    modifier: Modifier = Modifier,
+    names: List<String> = listOf("world", "compose")
+) {
+    Column(modifier = modifier.padding(vertical = 4.dp)) {
+        for (name in names) {
+            Greeting(name = name)
+        }
+    }
+}
+
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+private fun GreetingPreview() {
+    ComposeBasicsTheme {
+        Greetings()
     }
 }
 
