@@ -100,10 +100,10 @@ private fun GreetingPreview() {
 
 @Composable
 fun Greeting(name: String) {
-    val expanded = remember {
+    var expanded by remember {
         mutableStateOf(false)
     }
-    val extraPadding = if (expanded.value) 48.dp else 0.dp
+    val extraPadding = if (expanded) 48.dp else 0.dp
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
@@ -117,8 +117,8 @@ fun Greeting(name: String) {
                 Text(text = "Hello")
                 Text(text = "$name!")
             }
-            ElevatedButton(onClick = { expanded.value = !expanded.value }) {
-                Text(if (expanded.value) "Show Less" else "Show More")
+            ElevatedButton(onClick = { expanded = !expanded }) {
+                Text(if (expanded) "Show Less" else "Show More")
             }
         }
     }
