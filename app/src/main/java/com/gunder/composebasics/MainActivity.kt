@@ -104,7 +104,7 @@ private fun GreetingPreview() {
 
 @Composable
 fun Greeting(name: String) {
-    var expanded by remember {
+    var expanded by rememberSaveable {
         mutableStateOf(false)
     }
     val extraPadding by animateDpAsState(
