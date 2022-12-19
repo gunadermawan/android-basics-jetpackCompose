@@ -1,5 +1,6 @@
 package com.gunder.composebasics
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Preview(showBackground = true, widthDp = 320, uiMode = UI_MODE_NIGHT_YES, name = "dark moode")
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 fun DefaultPreview() {
